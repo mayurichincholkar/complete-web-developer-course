@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Javascript 6</title>
+</head>
+<body>
+	<p>what is the magic word?</p>
+	<p> <input type="text" id="magicWord"> </p>
+	<button id="checkWord">Enter</button>
+	<script type="text/javascript">
+		
+		/*var x = 1;
+		if(x == 1){
+			alert("x value matches with given value which is = "+x);
+		}else{
+			alert("x value not matches with given value !");
+		}*/
+
+		 document.getElementById("checkWord").onclick = function() {
+                
+                var magicWordEntered = document.getElementById("magicWord").value;
+                
+                var magicWord = "abracadabra";
+                
+                if (magicWordEntered == magicWord) {
+                    
+                    alert("You got it!");
+                    
+                } else {
+                    
+                    alert("Nope, try again!");
+                    
+                }
+                
+            }
+
+	</script>
+
+</body>
+</html>
+            
+           

@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title>Javascript</title>
+</head>
+<body>
+	
+<button onclick="alert('Welcome to Learning Javascript')">Click on $</button>
+
+<p id="text">Let's start with internal javascript</p>
+
+<p id="text1">This text need to be changed ???</p>
+
+<button id="myButton">change text</button>
+
+<p id="text2">jacascript is ...</p>
+
+<button id="myButton2">complete sentence</button>
+
+<p id="text3">Text for styling</p>
+<button id="myButton3">Style Text</button>
+
+
+<script type="text/javascript">
+
+	//one line comment
+
+	/*
+		multi
+		line
+		comment
+	*/
+	
+	alert('Script loads automatically');
+	document.getElementById("text").innerHTML = "hi";
+
+	document.getElementById("myButton").onclick = function(){
+		//alert("Button clicked");
+
+		document.getElementById("text1").innerHTML = "<h1>See the text is changed !!!</h1>";
+	};
+
+	document.getElementById("myButton2").onclick = function(){
+		//alert("Button clicked");
+
+		document.getElementById("text2").innerHTML = "i think " + document.getElementById("text2").innerHTML + "awesome !";
+	};
+
+
+	document.getElementById("myButton3").onclick = function(){
+		//alert("Button clicked");
+
+		document.getElementById("text3").style.color = "red";
+		document.getElementById("text3").style.fontSize = "50px";
+		//document.getElementById("text3").style.display = "none";
+	};
+
+
+</script>
+
+</body>
+</html>

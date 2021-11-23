@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Javascript 4</title>
+</head>
+<body>
+	<input type="text" id="inputtext">
+	<button id="changetext">Change the Text</button>
+	<p id="showtext">Change this text !</p>
+
+	<script type="text/javascript">
+		
+		document.getElementById('changetext').onclick = function(){
+
+			var textEntered = "";
+			textEntered = document.getElementById("inputtext").value ;
+			document.getElementById("showtext").innerHTML = textEntered ;
+		}
+
+	</script>
+
+</body>
+</html> 

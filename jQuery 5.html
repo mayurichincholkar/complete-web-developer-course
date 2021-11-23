@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jQuery 5</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style type="text/css">
+        #hiddenText{
+            display: none;
+        }
+    </style>
+	
+</head>
+<body>
+    <p id="text">Fadeout this text...</p>
+    <button id="fadeOut">Fade Out Text</button>
+
+   <!--     <p id="hiddenText">Previously this text was hidden</p>
+    <button id="fadeIn">Fade In Text</button>   -->
+
+    <script type="text/javascript">
+    $("#fadeOut").click(function(){
+
+            if($("#text").css("display")=="none"){
+                $("#text").fadeIn();
+            }else{
+                $("#text").fadeOut();
+            }
+        });
+
+
+    /*
+        $("#fadeIn").click(function(){
+            $("#hiddenText").fadeIn();
+        });
+    */
+    </script>
+
+</body>
+</html>
