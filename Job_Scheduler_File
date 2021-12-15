@@ -1,0 +1,87 @@
+Job Scheduler
+
+A job is the task itself , which is used to schedule jobs at periodic fixed times, dates or intervals. Involves repetitive tasks that are automated to save time. In WordPress this is handled by WP-Cron .
+
+In WordPress (Job Scheduling) : 
+
+    1. Install WP Control plugin
+    
+    2. Go to Tools->Cron Events
+    
+    3. Click on Hook(Event) -> Edit (for editing an event)
+    
+    4. Go to Tools-> Cron Events -> Add Event (i.e. Add a cron event for adding a new event)
+      Choose standard event and type the Hook name(i.e event name) then select timestamp and add recurrence time (if any) and click on Add Event.
+      
+    5. Go to Appearance -> Theme Editor -> function.php and add action for created event anywhere within it.
+              /* Add an action for handling wp_say_hello event */
+
+            add_action( 'wp_say_hello', 'event_function' );
+            function event_function() {
+            wp_mail( 'mayuri.chincholkar@webshar.org', 'WordPress Hello Event', 'wp-say-hello function is running !' );
+
+            /*  we can use multiple wp_mail() functions*/
+            /*wp_mail( 'mayuric9999@gmail.com', 'WordPress Hello Event', 'wp-say-hello function is running !' ); */
+            }
+
+    6. Or use wp_schedule_event() function 
+           https://developer.wordpress.org/reference/functions/wp_schedule_event/
+           
+    7. Or use Task Scheduler plugin 
+           https://wordpress.org/plugins/task-scheduler/
+
+In PHP(Job scheduling) :
+
+      1.Install library composer require hutnikau / job-scheduler
+
+      2.Class used for that is \Scheduler\Job\Job
+
+      3. Define a Job :
+                $startTime = new \DateTime('2017-12-12 20:00:00');
+                $rule = new \Scheduler\Job\RRule('FREQ=MONTHLY;COUNT=5', $startTime); //run monthly, at 20:00:00 starting from the 12th of December 2017, 5 times
+                $job = new \Scheduler\Job\Job($rule, function () {
+                    //do something
+                });
+
+
+      4.Add a task to schedule :
+                $scheduler = new \Scheduler\Scheduler()
+                $scheduler->addJob($job);
+
+      5.We can also transfer an array of constructor to the scheduler :
+                $scheduler = new \Scheduler\Scheduler([
+                        $job,
+                       //more jobs here
+                 ])
+
+
+      6.Now to lunch schedule task :
+                $jobRunner = new \Scheduler\JobRunner\JobRunner();
+                $from      = new \DateTime('2017-12-12 20:00:00');
+                $to        = new \DateTime('2017-12-12 20:10:00');
+                $reports   = $jobRunner->run($scheduler, $from, $to, true);
+
+
+      7.In the above example all the tasks scheduled for 10 minutes will be performed. So we need one cron job which runs JobRunner.
+
+
+      8.$ jobRunner-> run (...) Returns an array of results of completed tasks
+
+
+      9. By calling \Scheduler\Action\Report:: getReport () we can get result of executing a callback as below ,
+
+                \Scheduler\Action\Report {
+                     /* Methods */
+                      public mixed getReport ( void )
+                      public Action getAction ( void )
+                      public string getType ( void )
+               }
+
+      10.OR use 
+                 https://github.com/peppeocchi/php-cron-scheduler/blob/master/src/GO/Scheduler.php
+
+      11.OR use
+                 https://laravel.com/docs/8.x/scheduling
+                 
+      12.OR use
+                 https://stackoverflow.com/questions/23028783/creating-schedule-task-without-cron-job
